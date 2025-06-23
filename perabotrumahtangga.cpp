@@ -42,7 +42,7 @@ void tambahPerabot() {
 }
 
 void sisipPerabot(int pos) {
-    Perabot* baru = new perabot;
+    Perabot* baru = new Perabot;
     cout << "\n=== Sisipkan Perabot di Posisi " << pos << " ===\n";
     cout << "ID: "; cin >> baru->id;
     cout << "Nama: "; cin >> baru->nama;
@@ -126,7 +126,8 @@ void hapusPerabot(int id) {
     cout << "Data dengan ID " << id << " tidak ditemukan!\n";
 }
 
-int main () {
+int main () 
+{
     int pilihan, posisi, idHapus;
 
     do{
@@ -146,7 +147,7 @@ int main () {
             case 2:
                 cout << "Masukkan Posisi: ";
                 cin >> posisi;
-                sisipkanPerabot(posisi);
+                sisipPerabot(posisi);
                 break;
             case 3:
                 tampilkanPerabot();
@@ -162,5 +163,7 @@ int main () {
             default:
                 cout << "Pilihan tidak valid.\n";    
         }
-    }
+    } while (pilihan != 0);
+    return 0;
 }
+    
