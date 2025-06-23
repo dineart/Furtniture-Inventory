@@ -13,6 +13,34 @@ struct Perabot {
 
 };
 
+Perabot* head = nullptr;
+
+void tambahPerabot() {
+    Perabot* baru = new Perabot;
+    cout << "\n=== Tambah Perabot ===\n";
+    cout << "ID: "; cin >> baru->id;
+    cout << "Nama: "; cin >> baru->nama;
+    cout << "Kategori: "; cin >> baru->kategori;
+    cout << "Merk: "; cin >> baru->merk;
+    cout << "Harga: "; cin >> baru->harga;
+    cout << "Stok: "; cin >> baru->stok;
+    baru->next = nullptr;
+
+    if (head == nullptr) {
+        head = baru;
+        head->next = head;
+    } else {
+        Perabot* temp = head;
+        while (temp->next != head ) {
+            temp = temp->next;
+        }
+        temp->next = baru;
+        baru->next = head;
+    }
+
+    cout << "Data berhasil ditambahkan!\n";
+}
+
 
 
 int main () {
