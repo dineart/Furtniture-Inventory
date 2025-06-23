@@ -41,6 +41,38 @@ void tambahPerabot() {
     cout << "Data berhasil ditambahkan!\n";
 }
 
+void sisipPerabot(int pos) {
+    Perabot* baru = new perabot;
+    cout << "\n=== Sisipkan Perabot di Posisi " << pos << " ===\n";
+    cout << "ID: "; cin >> baru->id;
+    cout << "Nama: "; cin >> baru->nama;
+    cout << "Kategori: "; cin >> baru->kategori;
+    cout << "Merk: "; cin >> baru->merk;
+    cout << "Harga: "; cin >> baru->harga;
+    cout << "Stok: "; cin >> baru->stok;
+
+    if (head == nullptr || pos <= 1) {
+        if (head == nullptr) {
+            head= baru;
+            head->next = head;
+        } else {
+            Perabot* temp = head;
+            while (temp->next != head) temp = temp->next;
+            baru->next = head;
+            baru->next = baru;
+            head = baru;
+        }
+    } else {
+        Perabot* temp =head;
+        for ( int i = 1; i < pos - 1 && temp->next != head; i++) {
+            temp = temp->next;
+        }
+        baru->next = temp->next;
+        temp->next = baru;
+    }
+    cout << "Data berhasil disisipkan\n";
+}
+
 
 
 int main () {
