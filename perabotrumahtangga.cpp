@@ -73,7 +73,22 @@ void sisipPerabot(int pos) {
     cout << "Data berhasil disisipkan\n";
 }
 
-
+void tampilkanPerabot(){
+    if(head == nullptr){
+        cout << "\nData kosong!\n";
+        return;
+    }
+    cout << "\n=== Daftar Perabot ===\n";
+    Perabot* temp = head;
+    int i = 1;
+    do{
+        cout << "[" << i++ << "] ID: " << temp->id << "\n";
+        cout << "    Nama: " << temp->nama << ", Kategori: " << temp->kategori << "\n";
+        cout << "    Merk: " << temp->merk << ", Harga: Rp" << temp->harga << ", Stok: " << temp->stok << "\n";
+        cout << "--------------------------------------------------\n";
+        temp = temp->next;
+    } while (temp != head);
+}
 
 int main () {
     int pilihan, posisi, idHapus;
