@@ -90,6 +90,42 @@ void tampilkanPerabot(){
     } while (temp != head);
 }
 
+void hapusPerabot(int id) {
+    if (head == nullptr) {
+        cout << "Data kosong!\n";
+        return;
+    }
+
+    Perabot* temp = head;
+    Perabot* prev = nullptr;
+
+    do {
+        if (temp->id == id) {
+            if (temp == head) {
+                if (head->next == head) {
+                    delete head;
+                    head = nullptr;
+                } else {
+                    Perabot* last = head;
+                    while (last->next != head) last = last->next;
+                    head = head->next;
+                    last->next = head;
+                    delete temp;
+                }
+            } else {
+                prev->next = temp->next;
+                delete temp;
+            }
+            cout << "Data dengan ID " << id << " berhasil dihapus!\n";
+            return;
+        }
+        prev = temp;
+        temp = temp->next;
+    } while (temp != head);
+
+    cout << "Data dengan ID " << id << " tidak ditemukan!\n";
+}
+
 int main () {
     int pilihan, posisi, idHapus;
 
