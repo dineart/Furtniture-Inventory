@@ -24,12 +24,6 @@ bool idSudahAda(int id) {
     return false;
 }
 
-void inputstring(const string& label, string& var) {
-    cout << label;
-    cin.ignore(); 
-    getline(cin, var);
-}
-
 void tambahPerabot() {
     Perabot* baru = new Perabot;
     cout << "\n=== Tambah Perabot ===\n";
@@ -74,14 +68,30 @@ void tambahPerabot() {
 
 
 void sisipPerabot(int pos) {
+    void sisipPerabot(int pos) {
     Perabot* baru = new Perabot;
     cout << "\n=== Sisipkan Perabot di Posisi " << pos << " ===\n";
     cout << "ID: "; cin >> baru->id;
-    cout << "Nama: "; cin >> baru->nama;
-    cout << "Kategori: "; cin >> baru->kategori;
-    cout << "Merk: "; cin >> baru->merk;
+    if (cin.fail() || idSudahAda(baru->id)) {
+        cout << "ID tidak valid atau sudah digunakan.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        delete baru;
+        return;
+    }
+    cin.ignore();
+    cout << "Nama: "; getline(cin, baru->nama);
+    cout << "Kategori: "; getline(cin, baru->kategori);
+    cout << "Merk: "; getline(cin, baru->merk);
     cout << "Harga: "; cin >> baru->harga;
     cout << "Stok: "; cin >> baru->stok;
+    if (cin.fail()) {
+        cout << "Input angka tidak valid!\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        delete baru;
+        return;
+    }
 
     if (head == nullptr || pos <= 1) {
         if (head == nullptr) {
