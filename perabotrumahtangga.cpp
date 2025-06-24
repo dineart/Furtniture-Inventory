@@ -168,6 +168,32 @@ void hapusPerabot(int id) {
     cout << "Data dengan ID " << id << " tidak ditemukan!\n";
 }
 
+void cariPerabot(int id) {
+    if (head == nullptr) {
+        cout << "Data kosong!\n";
+        return;
+    }
+    Perabot* temp = head;
+    int found = 0;
+    do {
+        if (temp->id == id) {
+            cout << "\n=== Data Ditemukan ===\n";
+            cout << "ID: " << temp->id << "\n";
+            cout << "Nama: " << temp->nama << "\n";
+            cout << "Kategori: " << temp->kategori << "\n";
+            cout << "Merk: " << temp->merk << "\n";
+            cout << "Harga: Rp" << temp->harga << "\n";
+            cout << "Stok: " << temp->stok << "\n";
+            found = 1;
+            break;
+        }
+        temp = temp->next;
+    } while (temp != head);
+    if (!found) {
+        cout << "Data dengan ID " << id << " tidak ditemukan!\n";
+    }
+}
+
 int main () 
 {
     int pilihan, posisi, idHapus;
