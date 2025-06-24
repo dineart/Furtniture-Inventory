@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <limits> 
 using namespace std;
 
 struct Perabot {
@@ -33,14 +34,31 @@ void tambahPerabot() {
     Perabot* baru = new Perabot;
     cout << "\n=== Tambah Perabot ===\n";
     cout << "ID: "; cin >> baru->id;
-    cout << "Nama: "; cin >> baru->nama;
-    cout << "Kategori: "; cin >> baru->kategori;
-    cout << "Merk: "; cin >> baru->merk;
+    if(cin.fail() || idSudahAda(baru->id)) {
+        cout  << "ID tidak valid atau sudah digunakan.\n",
+        cin.clear(); 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+        cout << "ID sudah ada atau tidak valid. Silakan coba lagi.\n";
+        delete baru; 
+        return;
+    }
+
+    cin.ignore();
+    cout << "Nama: "; getline (cin, baru->nama);
+    cout << "Kategori: ";getline (cin, baru->kategori);
+    cout << "Merk: "; getline (cin, baru->merk);
     cout << "Harga: "; cin >> baru->harga;
     cout << "Stok: "; cin >> baru->stok;
-    baru->next = nullptr;
 
-    if (head == nullptr) {
+    if(cin.fail()) {
+        cout << "input angka tidak valid!\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        delete baru;
+        return;
+    }
+
+    if (!head) {}
         head = baru;
         head->next = head;
     } else {
@@ -53,7 +71,7 @@ void tambahPerabot() {
     }
 
     cout << "Data berhasil ditambahkan!\n";
-}
+
 
 void sisipPerabot(int pos) {
     Perabot* baru = new Perabot;
