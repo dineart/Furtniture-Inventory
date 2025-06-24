@@ -13,7 +13,7 @@ Menata urutan produk yang ditampilkan secara manual memakan waktu dan rentan ter
 Tim showroom kesulitan menyisipkan produk baru ke posisi tertentu (misal: di depan display karena sedang promo).
 Penghapusan produk diskontinu sering menyebabkan kesalahan tautan data.
 
-Solusi Melalui CIRFURNI:
+Solusi:
 Program ini menggunakan struktur circular linked list untuk menyimpan dan memanipulasi data furnitur:
 Menyediakan mekanisme penambahan, penyisipan, dan penghapusan perabotan secara langsung dari struktur data melingkar.
 Meniru rotasi showroom nyata dengan fleksibilitas tinggi dalam pengurutan produk.
