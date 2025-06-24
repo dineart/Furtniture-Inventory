@@ -4,9 +4,7 @@ using namespace std;
 
 struct Perabot {
     int id;
-    string nama;
-    string kategori;
-    string merk;
+    string nama, kategori, merk;
     double harga;
     int stok;
     Perabot* next;
@@ -14,6 +12,22 @@ struct Perabot {
 };
 
 Perabot* head = nullptr;
+
+bool idSudahAda(int id) {
+    if (!head) return false;
+    Perabot* temp = head;
+    do {
+        if (temp->id == id) return true;
+        temp = temp->next;
+    } while (temp != head);
+    return false;
+}
+
+void inputstring(const string& label, string& var) {
+    cout << label;
+    cin.ignore(); 
+    getline(cin, var);
+}
 
 void tambahPerabot() {
     Perabot* baru = new Perabot;
@@ -56,10 +70,10 @@ void sisipPerabot(int pos) {
             head= baru;
             head->next = head;
         } else {
+            baru->next = head;
             Perabot* temp = head;
             while (temp->next != head) temp = temp->next;
-            baru->next = head;
-            baru->next = baru;
+            temp->next = baru;
             head = baru;
         }
     } else {
